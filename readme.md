@@ -2,7 +2,7 @@
 
 ### This is an application about comparing the best food in two different cities by using Yelp Api. ###
 
-###The heroku link to see my application is <a href="https://bestfoodity.herokuapp.com/">Click Here: https://bestfoodity.herokuapp.com/ </a>###
+### The heroku link to see my application is <a href="https://bestfoodity.herokuapp.com/">Click Here: https://bestfoodity.herokuapp.com/ </a> ###
 
 ## 1.Idea Behind this project: ##
 
