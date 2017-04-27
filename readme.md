@@ -2,6 +2,8 @@
 
 ### This is an application about comparing the best food in two different cities by using Yelp Api. ###
 
+###The heroku link to see my application is <a href="https://bestfoodity.herokuapp.com/">Click Here: https://bestfoodity.herokuapp.com/ </a>###
+
 ## 1.Idea Behind this project: ##
 
 Compare a specific food, like sushi, hotpot or BBQ in two different cities, and to see which city has the largest number of restaurants which serving the best food.Users has to input two cities' name first, and then choose a specific food.Lastly,they need choose the rating of the restaurants.Here it is suggested that the higher rating of a restaurant the better quality of the food.
