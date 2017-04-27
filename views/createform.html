@@ -1,0 +1,183 @@
+<div class="row">
+
+    <div class="col-lg-4 col-md-4 col-sm-4">
+        <img src="/img/illustration.svg" class="responsiveI">
+    </div>
+
+    <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="row">
+                <img src="/img/foodity.png" class="centerMe">
+            </div>
+            
+        <div class="col-lg-6 col-md-6 col-sm-6">
+        <div id="mainForm">
+
+            <div class="row">
+                <h3 class="question">First, choose two cities to compare</h3>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <h3 class="question">City A:
+                    <input type="text" name="LocationA" id="LocationA">
+             </h3>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <h3 class="question">City B:
+                    <input type="text" name="LocationB" id="LocationB">
+                </h3>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <h3 class="question">Second, choose the food you like</h3>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <img src="/img/sushi.svg" alt="sushi">
+                    <h4 class="choices">
+                <input class="check" type="radio" name="Food" value="Sushi" checked>Sushi
+                        </h4>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <img src="/img/hotpot.png" alt="hotpot">
+                    <h4 class="choices">
+                  <input type="radio" name="Food" value="Hotpot">Hotpot
+                        </h4>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <img src="/img/curry.png" alt="curry">
+                    <h4 class="choices">
+                <input type="radio" name="Food" value="Curry">Chicken Curry
+                        </h4>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <img src="/img/bbq.png" alt="bbq">
+                    <h4 class="choices">
+               <input type="radio" name="Food" value="BBQ">BBQ
+                        </h4>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <h3 class="question">Lastly, choose the rating<img src="/img/star.svg">of the restaurants</h3>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <h4 class="choices"><input class="check" type="radio" name="Rate" value="4.7" checked>
+                    4.7</h4>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <h4 class="choices"><input type="radio" name="Rate" value="4.5">
+                    4.5</h4>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <h4 class="choices"><input type="radio" name="Rate" value="4.3">
+                    4.3</h4>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <h4 class="choices"><input type="radio" name="Rate" value="4.1">
+                    4.1</h4>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <h4 class="choices"><input type="radio" name="Rate" value="3.9">
+                    3.9</h4>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <!--                            <input type="submit" value="Submit" class="submit">-->
+                    <button onclick="getForm()" class="submit centerMe">Submit</button>
+
+                </div>
+            </div>
+            <!--            </form>-->
+
+        </div>
+   </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6">
+       
+        
+        <canvas id="myChart" width="400" height="400"></canvas>
+        
+    </div>
+     </div>
+</div>
+
+<script>
+    function getForm() {
+
+        // var food = document.getElementsByName("Food").value;
+        var foodValue = document.querySelector('input[name=Food]:checked').value;
+
+        var city1value = document.querySelector('input[name=LocationA]').value;
+
+        var city2value = document.querySelector('input[name=LocationB]').value;
+
+        var ratevalue = document.querySelector('input[name=Rate]:checked').value;
+        console.log(foodValue);
+        console.log(city1value);
+        console.log(city2value);
+        console.log(ratevalue);
+
+
+        var formData = new FormData();
+        formData.append('Food', foodValue);
+        formData.append('LocationA', city1value);
+        formData.append('LocationB', city2value);
+        formData.append('Rate', ratevalue);
+
+        fetch("/form", {
+            method: "POST",
+            body: formData
+        }).then(function (response) {
+            console.log(response);
+            return response.text();
+        }).then(function (text) {
+            //console.log(text);
+            var resp = JSON.parse(text);
+            console.log(resp);
+            createChart(resp["loc1"],resp["loc2"],resp["loc1count"],resp["loc2count"])
+        });
+
+
+    }
+</script>
+
+<script type="text/javascript" src="js/Chart.bundle.min.js"></script>
+
+<script>
+
+    function createChart(loc1,loc2,loc1count,loc2count) {
+
+        var ctx = document.getElementById("myChart");
+
+
+        var keys = [loc1, loc2];
+        var values = [loc1count,loc2count];
+        var barcolors = 'rgba(' + 245 + ',' + 166 + ',' + 35 + ',' + 100 + ')';
+
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: keys,
+                datasets: [{
+                    label: 'Number of Restaurants',
+                    data: values,
+                    backgroundColor: barcolors
+                        }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                            }]
+                }
+            }
+        });
+
+    }
+</script>

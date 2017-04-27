@@ -1,0 +1,69 @@
+body {
+	margin:0;
+}
+
+
+
+.responsiveI {
+	width:100%;
+    margin:0 auto;
+display: block;
+/*	border: 9px solid black;*/
+}
+
+.centerMe{
+padding-top:20px;
+margin:0 auto;
+display: block;
+}
+
+/*change style of timeline*/
+
+
+ #myChart{
+     margin-top:30px;
+            width: 400px;
+            height: 400px;
+            max-height: 400px;
+            max-width: 400px;
+        }
+
+.submit {
+ background: #ffc669;
+  background-image: -webkit-linear-gradient(top, #ffc669, #d68400);
+  background-image: -moz-linear-gradient(top, #ffc669, #d68400);
+  background-image: -ms-linear-gradient(top, #ffc669, #d68400);
+  background-image: -o-linear-gradient(top, #ffc669, #d68400);
+  background-image: linear-gradient(to bottom, #ffc669, #d68400);
+  -webkit-border-radius: 6;
+  -moz-border-radius: 6;
+  border-radius: 6px;
+  font-family: Arial;
+  color: #fff;
+  font-size: 16px;
+  padding: 6px 15px 6px 15px;
+  text-decoration: none;
+    border: 0px solid transparent;
+}
+
+.submit:hover {
+    color: #fff;
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+    border: 0px solid transparent;
+}
+
+.question{
+font-family: 'Handlee', cursive;
+color:#3F87D8;
+}
+
+.choices{
+font-family: 'Handlee', cursive;
+color:#4C5B5C;
+}
